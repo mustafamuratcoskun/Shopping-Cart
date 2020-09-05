@@ -1,0 +1,143 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DeliveryCost</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.trendyol.shoppingcart.delivery</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DeliveryCost (com.trendyol.shoppingcart.delivery)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DeliveryCost</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/ 10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.trendyol.shoppingcart.delivery;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.trendyol.shoppingcart.exception.InvalidException;
+<i>4</i>&nbsp;import com.trendyol.shoppingcart.shopping.ShoppingCartController;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;/**
+<i>7</i>&nbsp; * It is the class that provides delivery cost calculate.
+<i>8</i>&nbsp; *
+<i>9</i>&nbsp; * @author Hasan Burak KUTBAY
+<i>10</i>&nbsp; * @version 1.0
+<i>11</i>&nbsp; * @since 2020-09-04
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;public class DeliveryCost implements DeliveryCostCalculate {
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;  private final double costDelivery;
+<i>16</i>&nbsp;  private final double costProduct;
+<i>17</i>&nbsp;  private final double fixCost;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;  /**
+<i>20</i>&nbsp;   * This method is constructor method and discount value set discountCalculator method
+<i>21</i>&nbsp;   *
+<i>22</i>&nbsp;   * @param costDelivery This first parameter to constructor method delivery cost
+<i>23</i>&nbsp;   * @param costProduct  This second parameter to constructor method product cost
+<i>24</i>&nbsp;   * @param fixCost      This third parameter to constructor method fixed cost
+<i>25</i>&nbsp;   */
+<b class="fc"><i>26</i>&nbsp;  public DeliveryCost(double costDelivery, double costProduct, double fixCost) {</b>
+<b class="fc"><i>27</i>&nbsp;    this.costDelivery = costDelivery;</b>
+<b class="fc"><i>28</i>&nbsp;    this.costProduct = costProduct;</b>
+<b class="fc"><i>29</i>&nbsp;    this.fixCost = fixCost;</b>
+<b class="fc"><i>30</i>&nbsp;  }</b>
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;  /**
+<i>33</i>&nbsp;   * This method is constructor method and discount value set discountCalculator method
+<i>34</i>&nbsp;   *
+<i>35</i>&nbsp;   * @param costDelivery This is the first parameter to constructor method
+<i>36</i>&nbsp;   * @param costProduct  This is the second  parameter to constructor method
+<i>37</i>&nbsp;   * @param fixCost      This is the third DiscountType variable parameter to constructor method
+<i>38</i>&nbsp;   * @throws InvalidException On input error.
+<i>39</i>&nbsp;   * @see InvalidException
+<i>40</i>&nbsp;   */
+<i>41</i>&nbsp;  public void validate(Double costDelivery, Double costProduct, Double fixCost) {
+<b class="fc"><i>42</i>&nbsp;    if (costDelivery &lt; 0 || costProduct &lt; 0 || fixCost &lt; 0) {</b>
+<b class="nc"><i>43</i>&nbsp;      throw new InvalidException(&quot;Cannot have negative value!&quot;);</b>
+<i>44</i>&nbsp;    }
+<b class="fc"><i>45</i>&nbsp;  }</b>
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;  /**
+<i>48</i>&nbsp;   * This method is shopping delivery cost calculate.
+<i>49</i>&nbsp;   *
+<i>50</i>&nbsp;   * @param cart ShoppingCart is product delivery price&#39;s calculate
+<i>51</i>&nbsp;   * @return double This return value is calculate delivery cost.
+<i>52</i>&nbsp;   */
+<i>53</i>&nbsp;  @Override
+<i>54</i>&nbsp;  public double calculate(ShoppingCartController cart) {
+<i>55</i>&nbsp;
+<b class="fc"><i>56</i>&nbsp;    validate(costDelivery, costProduct, fixCost);</b>
+<b class="fc"><i>57</i>&nbsp;    return (costDelivery * cart.getShoppingCartDto().getTotalDeliveries()) + (costProduct * cart.getShoppingCartDto().getTotalProducts()) + fixCost;</b>
+<i>58</i>&nbsp;  }
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-09-05 17:28</div>
+</div>
+</body>
+</html>

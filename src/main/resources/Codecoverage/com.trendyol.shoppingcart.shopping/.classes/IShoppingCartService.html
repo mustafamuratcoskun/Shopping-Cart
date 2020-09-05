@@ -1,0 +1,118 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: IShoppingCartService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.trendyol.shoppingcart.shopping</a> ]
+</div>
+
+<h1>Coverage Summary for Class: IShoppingCartService (com.trendyol.shoppingcart.shopping)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">IShoppingCartService</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.trendyol.shoppingcart.shopping;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.trendyol.shoppingcart.model.Category;
+<i>4</i>&nbsp;import com.trendyol.shoppingcart.model.Product;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.HashMap;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * It is the interface that shopping cart service.
+<i>10</i>&nbsp; *
+<i>11</i>&nbsp; * @author Hasan Burak KUTBAY
+<i>12</i>&nbsp; * @version 1.0
+<i>13</i>&nbsp; * @since 2020-09-04
+<i>14</i>&nbsp; */
+<i>15</i>&nbsp;public interface IShoppingCartService {
+<i>16</i>&nbsp;  /**
+<i>17</i>&nbsp;   * This method is shopping cart checkout
+<i>18</i>&nbsp;   *
+<i>19</i>&nbsp;   * @param products This is the first parameter to products list.
+<i>20</i>&nbsp;   */
+<i>21</i>&nbsp;  void checkout(HashMap&lt;Product, Integer&gt; products);
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;  /**
+<i>24</i>&nbsp;   * This method is shopping products for delivery cost
+<i>25</i>&nbsp;   *
+<i>26</i>&nbsp;   * @param cart This is the first parameter to shopping cart
+<i>27</i>&nbsp;   * @return double delivery cost
+<i>28</i>&nbsp;   */
+<i>29</i>&nbsp;  double getDeliveryCost(ShoppingCartController cart);
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;  /**
+<i>32</i>&nbsp;   * This method is shopping products for total amount after discount
+<i>33</i>&nbsp;   *
+<i>34</i>&nbsp;   * @param totalPrice       This is the first parameter to total price
+<i>35</i>&nbsp;   * @param couponDiscount   This is the second parameter to coupon discount
+<i>36</i>&nbsp;   * @param campaignDiscount This is the third parameter to campaign discount
+<i>37</i>&nbsp;   */
+<i>38</i>&nbsp;  void getTotalAmountAfterDiscounts(double totalPrice, double couponDiscount, double campaignDiscount);
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;  /**
+<i>41</i>&nbsp;   * This method is shopping products for shopping cart add item
+<i>42</i>&nbsp;   *
+<i>43</i>&nbsp;   * @param products This is the first parameter to products
+<i>44</i>&nbsp;   * @param product  This is the second parameter to product
+<i>45</i>&nbsp;   * @param quantity This is the third parameter to total quantity
+<i>46</i>&nbsp;   * @return double add item.
+<i>47</i>&nbsp;   */
+<i>48</i>&nbsp;  double addItem(HashMap&lt;Product, Integer&gt; products, Product product, int quantity);
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;  /**
+<i>51</i>&nbsp;   * This method is shopping products for calculate category
+<i>52</i>&nbsp;   *
+<i>53</i>&nbsp;   * @param product        This is the first parameter to product
+<i>54</i>&nbsp;   * @param quantity       This is the second parameter to quantity
+<i>55</i>&nbsp;   * @param categoryPrices This is the third parameter to category prices
+<i>56</i>&nbsp;   * @return HashMap calculate category list
+<i>57</i>&nbsp;   */
+<i>58</i>&nbsp;  HashMap&lt;Category, Double&gt; calculateCategory(Product product, int quantity, HashMap&lt;Category, Double&gt; categoryPrices);
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;  /**
+<i>61</i>&nbsp;   * This method is shopping products for calculate product quantity
+<i>62</i>&nbsp;   *
+<i>63</i>&nbsp;   * @param product          This is the first parameter to product
+<i>64</i>&nbsp;   * @param quantity         This is the second parameter to quantity
+<i>65</i>&nbsp;   * @param categoryQuantity This is the third parameter to category quantity
+<i>66</i>&nbsp;   * @return HashMap calculate category list
+<i>67</i>&nbsp;   */
+<i>68</i>&nbsp;  HashMap&lt;Category, Integer&gt; calculateQuantities(Product product, int quantity, HashMap&lt;Category, Integer&gt; categoryQuantity);
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-09-05 17:28</div>
+</div>
+</body>
+</html>

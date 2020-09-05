@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ShoppingCartController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.trendyol.shoppingcart.shopping</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ShoppingCartController (com.trendyol.shoppingcart.shopping)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ShoppingCartController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86,2%
+  </span>
+  <span class="absValue">
+    (25/ 29)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.trendyol.shoppingcart.shopping;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.trendyol.shoppingcart.coupon.CouponDiscountService;
+<i>4</i>&nbsp;import com.trendyol.shoppingcart.discount.DiscountCalculatorService;
+<i>5</i>&nbsp;import com.trendyol.shoppingcart.model.Campaign;
+<i>6</i>&nbsp;import com.trendyol.shoppingcart.model.Coupon;
+<i>7</i>&nbsp;import com.trendyol.shoppingcart.model.Product;
+<i>8</i>&nbsp;import com.trendyol.shoppingcart.model.ShoppingCart;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;/**
+<i>11</i>&nbsp; * It is the class that Shopping Cart Controller
+<i>12</i>&nbsp; *
+<i>13</i>&nbsp; * @author Hasan Burak KUTBAY
+<i>14</i>&nbsp; * @version 1.0
+<i>15</i>&nbsp; * @since 2020-09-04
+<i>16</i>&nbsp; */
+<i>17</i>&nbsp;public class ShoppingCartController {
+<i>18</i>&nbsp;  private final ShoppingCart shoppingCartDto;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;  private DiscountCalculatorService discountCalculatorService;
+<i>21</i>&nbsp;  private CouponDiscountService couponDiscountService;
+<i>22</i>&nbsp;  private ShoppingCartService shoppingCartService;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;
+<b class="fc"><i>25</i>&nbsp;  public ShoppingCartController() {</b>
+<i>26</i>&nbsp;
+<b class="fc"><i>27</i>&nbsp;    shoppingCartDto = new ShoppingCart();</b>
+<b class="fc"><i>28</i>&nbsp;    shoppingCartDto.setTotalPrice(0D);</b>
+<b class="fc"><i>29</i>&nbsp;    shoppingCartDto.setCouponDiscount(0D);</b>
+<b class="fc"><i>30</i>&nbsp;    shoppingCartDto.setTotalProducts(0);</b>
+<b class="fc"><i>31</i>&nbsp;    shoppingCartDto.setTotalDeliveries(0);</b>
+<i>32</i>&nbsp;
+<b class="fc"><i>33</i>&nbsp;    initService();</b>
+<b class="fc"><i>34</i>&nbsp;  }</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;  /**
+<i>37</i>&nbsp;   * This method is initialize services
+<i>38</i>&nbsp;   */
+<i>39</i>&nbsp;  public void initService() {
+<b class="fc"><i>40</i>&nbsp;    shoppingCartService = new ShoppingCartService();</b>
+<b class="fc"><i>41</i>&nbsp;    discountCalculatorService = new DiscountCalculatorService();</b>
+<b class="fc"><i>42</i>&nbsp;    couponDiscountService = new CouponDiscountService();</b>
+<b class="fc"><i>43</i>&nbsp;  }</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;  /**
+<i>46</i>&nbsp;   * This method is shopping products for shopping cart add item
+<i>47</i>&nbsp;   *
+<i>48</i>&nbsp;   * @param product  This is the first parameter to product
+<i>49</i>&nbsp;   * @param quantity This is the second parameter to total quantity
+<i>50</i>&nbsp;   */
+<i>51</i>&nbsp;  public void addItem(Product product, int quantity) {
+<i>52</i>&nbsp;
+<b class="fc"><i>53</i>&nbsp;    shoppingCartDto.setTotalPrice(shoppingCartService.addItem(shoppingCartDto.getProducts(), product, quantity));</b>
+<b class="fc"><i>54</i>&nbsp;    shoppingCartDto.setTotalProducts(shoppingCartDto.getProducts().size());</b>
+<b class="fc"><i>55</i>&nbsp;    shoppingCartDto.setCategoryPrices(shoppingCartService.calculateCategory(product, quantity, shoppingCartDto.getCategoryPrices()));</b>
+<b class="fc"><i>56</i>&nbsp;    shoppingCartDto.setCategoryQuantity(shoppingCartService.calculateQuantities(product, quantity, shoppingCartDto.getCategoryQuantity()));</b>
+<b class="fc"><i>57</i>&nbsp;    shoppingCartDto.setTotalDeliveries(shoppingCartDto.getCategoryQuantity().size());</b>
+<b class="fc"><i>58</i>&nbsp;  }</b>
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;  /**
+<i>61</i>&nbsp;   * This method is apply discount for campaigns
+<i>62</i>&nbsp;   *
+<i>63</i>&nbsp;   * @param campaigns This is the first parameter to campaigns
+<i>64</i>&nbsp;   * @return double discount calculate service value
+<i>65</i>&nbsp;   */
+<i>66</i>&nbsp;  public double applyDiscount(Campaign... campaigns) {
+<b class="fc"><i>67</i>&nbsp;    return discountCalculatorService.applyDiscount(shoppingCartDto.getCategoryQuantity(), shoppingCartDto.getCategoryPrices(), campaigns);</b>
+<i>68</i>&nbsp;  }
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;  /**
+<i>71</i>&nbsp;   * This method is apply coupon  for shopping cart
+<i>72</i>&nbsp;   *
+<i>73</i>&nbsp;   * @param coupon This is the first parameter to coupon
+<i>74</i>&nbsp;   * @return double coupon discount
+<i>75</i>&nbsp;   */
+<i>76</i>&nbsp;  public double applyCoupon(Coupon coupon) {
+<b class="fc"><i>77</i>&nbsp;    shoppingCartDto.setCouponDiscount(couponDiscountService.applyCoupon(coupon, shoppingCartDto.getCampaignDiscount(), shoppingCartDto.getTotalPrice()));</b>
+<i>78</i>&nbsp;
+<b class="fc"><i>79</i>&nbsp;    return shoppingCartDto.getCouponDiscount();</b>
+<i>80</i>&nbsp;  }
+<i>81</i>&nbsp;
+<i>82</i>&nbsp;  /**
+<i>83</i>&nbsp;   * This method is apply coupon  for delivery cost
+<i>84</i>&nbsp;   *
+<i>85</i>&nbsp;   * @return double shopping delivery cost
+<i>86</i>&nbsp;   */
+<i>87</i>&nbsp;  public double deliveryCost() {
+<b class="fc"><i>88</i>&nbsp;    return shoppingCartService.getDeliveryCost(this);</b>
+<i>89</i>&nbsp;  }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;  /**
+<i>92</i>&nbsp;   * This method is apply coupon  for  shopping cart checkout
+<i>93</i>&nbsp;   */
+<i>94</i>&nbsp;  public void checkout() {
+<b class="nc"><i>95</i>&nbsp;    shoppingCartService.checkout(shoppingCartDto.getProducts());</b>
+<b class="nc"><i>96</i>&nbsp;    shoppingCartService.getDeliveryCost(this);</b>
+<b class="nc"><i>97</i>&nbsp;    shoppingCartService.getTotalAmountAfterDiscounts(shoppingCartDto.getTotalPrice(), shoppingCartDto.getCouponDiscount(), shoppingCartDto.getCampaignDiscount());</b>
+<b class="nc"><i>98</i>&nbsp;  }</b>
+<i>99</i>&nbsp;
+<i>100</i>&nbsp;  /**
+<i>101</i>&nbsp;   * This method is apply coupon  for total amount after discount
+<i>102</i>&nbsp;   *
+<i>103</i>&nbsp;   * @return double total amount after discount
+<i>104</i>&nbsp;   */
+<i>105</i>&nbsp;  public double getTotalAmountAfterDiscounts() {
+<b class="fc"><i>106</i>&nbsp;    return shoppingCartDto.getTotalPrice() - (shoppingCartDto.getCouponDiscount() + shoppingCartDto.getCampaignDiscount());</b>
+<i>107</i>&nbsp;  }
+<i>108</i>&nbsp;
+<i>109</i>&nbsp;  /**
+<i>110</i>&nbsp;   * This method is getter value for shopping cart services
+<i>111</i>&nbsp;   *
+<i>112</i>&nbsp;   * @return ShoppingCartService
+<i>113</i>&nbsp;   */
+<i>114</i>&nbsp;  public ShoppingCartService getShoppingCartService() {
+<b class="fc"><i>115</i>&nbsp;    return shoppingCartService;</b>
+<i>116</i>&nbsp;  }
+<i>117</i>&nbsp;
+<i>118</i>&nbsp;  /**
+<i>119</i>&nbsp;   * This method is getter value for shopping cart data transfer object
+<i>120</i>&nbsp;   *
+<i>121</i>&nbsp;   * @return ShoppingCart
+<i>122</i>&nbsp;   */
+<i>123</i>&nbsp;  public ShoppingCart getShoppingCartDto() {
+<b class="fc"><i>124</i>&nbsp;    return shoppingCartDto;</b>
+<i>125</i>&nbsp;  }
+<i>126</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-09-05 17:28</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ICouponDiscount</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.trendyol.shoppingcart.coupon</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ICouponDiscount (com.trendyol.shoppingcart.coupon)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ICouponDiscount</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.trendyol.shoppingcart.coupon;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import com.trendyol.shoppingcart.model.Coupon;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;/**
+<i>7</i>&nbsp; * It is the interface that provides discounts.
+<i>8</i>&nbsp; *
+<i>9</i>&nbsp; * @author Hasan Burak KUTBAY
+<i>10</i>&nbsp; * @version 1.0
+<i>11</i>&nbsp; * @since 2020-09-04
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;public interface ICouponDiscount {
+<i>14</i>&nbsp;  /**
+<i>15</i>&nbsp;   * This method is price discount apply by coupon
+<i>16</i>&nbsp;   *
+<i>17</i>&nbsp;   * @param coupon           This is the first parameter to discount coupon
+<i>18</i>&nbsp;   * @param campaignDiscount This is the second  parameter camping discount
+<i>19</i>&nbsp;   * @param totalPrice       This is the third totalPrice variable parameter to checkout totalrpice
+<i>20</i>&nbsp;   * @return double apply coupon value
+<i>21</i>&nbsp;   */
+<i>22</i>&nbsp;  double applyCoupon(Coupon coupon, double campaignDiscount, double totalPrice);
+<i>23</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-09-05 17:28</div>
+</div>
+</body>
+</html>
